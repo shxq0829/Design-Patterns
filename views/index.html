@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><?php echo $name ?> - Result</title>
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="http://v3.bootcss.com/dist/css/bootstrap.min.css">
+    <!-- jQuery -->
+    <script src="http://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
+    <script type="text/javascript">
+        var count_a = 0, count_s = 0, count_f = 0;
+        function outputResult(id, message, result, ext) {
+            count_a++;
+            if (result) {
+                count_s++;
+                $("#" + id).attr("class", "alert alert-success");
+            } else {
+                count_f++;
+                $("#" + id).attr("class", "alert alert-danger");
+                $("<a style=\"padding-left:1px\" href=\"#" + id + "\">[" + id.toLowerCase() + "]</a>").appendTo($("#anchors"));
+            }
+
+            $("#" + id + "_content").html(message);
+            $("#" + id + "_ext").html(decodeURIComponent(ext));
+
+            $("#count_a").html("总数:" + count_a);
+            $("#count_s").html("通过:" + count_s);
+            $("#count_f").html("失败:" + count_f);
+        }
+    </script>
+    <style type="text/css">
+        .page-header {
+            padding-bottom: 9px;
+            margin: 40px 0 20px;
+            border-bottom: 1px solid #eeeeee;
+        }
+    </style>
+</head>
+<body>
+<div class="page-header">
+    <h1><?php echo $name ?> <small class="alert alert-primary">(<?=PLATFORM_VERSION?>)</small><small id="count_a" class="alert alert-info"></small>&nbsp;<small id="count_s" class="alert alert-success"></small>&nbsp;<small id="count_f" class="alert alert-danger"></small>&nbsp;<small id="anchors" class="alert alert-warning"></small></h1>
+</div>
+<?php foreach($tests as $test): ?>
+<div id="<?= $test['id'] ?>" class="alert alert-info">
+    <span id="<?= $test['id'] ?>_content"><?= $test['id'] ?></span>&nbsp;&nbsp;<small id="<?= $test['id'] ?>_ext" style="color: blue;"></small>
+</div>
+<?php endforeach; ?>
+</body>
+</html>
