@@ -60,12 +60,10 @@ error_reporting(-1);
 //eval($input);
 
 
-require_once "platform/model/observer.php";
-$login = new Login();
-new SecurityMonitor($login);
-new GeneralLogger($login);
-new PartnerShipTool($login);
-$login->handleLogin('xiaoqiang', 'shxq0829', '10.210.234.136');
-
-
+//require_once "platform/model/observer.php";
+//$login = new Login();
+//new SecurityMonitor($login);
+//new GeneralLogger($login);
+//new PartnerShipTool($login);
+//$login->handleLogin('xiaoqiang', 'shxq0829', '10.210.234.136');
 
